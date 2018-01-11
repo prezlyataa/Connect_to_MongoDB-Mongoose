@@ -34,6 +34,11 @@ student.save(function (err, data) {
     else console.log('Saved : ', data );
 });
 
+User.find(function (err, persons) {
+    if (err) return console.error(err);
+    console.log(persons);
+})
+
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
