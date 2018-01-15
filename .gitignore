@@ -1,0 +1,11 @@
+# IDE ignores
+.idea/
+
+# common ignores
+node_modules
+
+package-lock.json
+*.log
+*.log.*
+.DS_STORE
+.DS_Store
