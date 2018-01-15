@@ -1,5 +1,21 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: 100px;
     text-align: center;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+}
+
+.input_field {
+    width: 300px;
+    border-radius: 3px;
+}
+
+.btn:hover {
+    cursor: pointer;
 }
