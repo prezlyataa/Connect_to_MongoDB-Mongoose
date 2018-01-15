@@ -20,23 +20,17 @@ db.once('open', function () {
     console.log('Connected to Database');
 });
 
-// var student = new User({
-//     name : 'Yurii',
-//     age : 21
-// });
-
 app.post('/new', function (req,res) {
     new User({
         name: req.body.name,
         age: req.body.age
-    }).save(function (err,doc) {
-        if(err) {
-            res.json(err);
-        }
-        else {
-            res.send('Successfully inserted!');
-        }
-    });
+    }).save()
+        .then(item => {
+            res.send("User saved to database");
+        })
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
 });
 
 // student.save(function (err, data) {
