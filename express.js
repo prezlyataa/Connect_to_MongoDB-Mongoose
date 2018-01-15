@@ -35,8 +35,12 @@ app.post('/new', function (req,res) {
 
 app.get('/view', function (req,res) {
     User.find({}, function (err,persons) {
-        if (err) res.send('Error');
-        else res.send(persons);
+        if (err) {
+            res.send('Error')
+        }
+        else {
+            res.send(persons);
+        }
     })
 });
 
