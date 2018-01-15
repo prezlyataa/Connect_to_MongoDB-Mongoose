@@ -25,12 +25,19 @@ app.post('/new', function (req,res) {
         name: req.body.name,
         age: req.body.age
     }).save()
-        .then(item => {
+        .then(user => {
             res.send("User saved to database");
         })
         .catch(err => {
-            res.status(400).send("unable to save to database");
+            res.status(400).send("Unable to save to database");
         });
+});
+
+app.get('/view', function (req,res) {
+    User.find({}, function (err,persons) {
+        if (err) res.send('Error');
+        else res.send(persons);
+    })
 });
 
 // student.save(function (err, data) {
