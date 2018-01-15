@@ -34,14 +34,13 @@ app.post('/new', function (req,res) {
 });
 
 app.get('/view', function (req,res) {
-    User.find({}, function (err,persons) {
-        if (err) {
-            res.send('Error')
-        }
-        else {
+    User.find()
+        .then(persons => {
             res.send(persons);
-        }
-    })
+        })
+        .catch(err => {
+            res.send("Error");
+        });
 });
 
 // student.save(function (err, data) {
