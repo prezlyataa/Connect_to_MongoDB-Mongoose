@@ -43,7 +43,7 @@ app.post('/new', function (req,res) {
 //     console.log(persons);
 // });
 
-app.use(express.static(__dirname + '/Public'));
+app.use(express.static(__dirname + '/public'));
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000');
