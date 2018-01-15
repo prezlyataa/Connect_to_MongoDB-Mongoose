@@ -1,11 +1,13 @@
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
+// const User = require('./models/user');
 
-var app = express();
+const app = express();
+app.use(express.static(__dirname + '/Public'));
 
 mongoose.connect('mongodb://localhost/test');
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', function (err) {
     console.log('connection error', err);
@@ -15,32 +17,23 @@ db.once('open', function () {
     console.log('Connected to Database');
 });
 
-var Schema = mongoose.Schema;
+// var student = new User({
+//     name : 'Arnold',
+//     age : 21
+// });
 
-var userSchema = new Schema({
-    name : String,
-    age : Number
-});
+// student.save(function (err, data) {
+//     if (err) console.log(err);
+//     else console.log('Saved : ', data );
+// });
 
-var User = mongoose.model('User', userSchema);
+// User.find(function (err, persons) {
+//     if (err) return console.error(err);
+//     console.log(persons);
+// });
 
-var student = new User({
-    name : 'Arnold',
-    age : 21
-});
-
-student.save(function (err, data) {
-    if (err) console.log(err);
-    else console.log('Saved : ', data );
-});
-
-User.find(function (err, persons) {
-    if (err) return console.error(err);
-    console.log(persons);
-})
-
-app.get('/', function (req, res) {
-    res.send('Hello World!');
+app.get('/',function(req,res){
+    res.sendFile('index.html');
 });
 
 app.listen(3000, function () {
