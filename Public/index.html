@@ -11,9 +11,9 @@
 <body>
     <div class="container">
         <h3>Add user to database</h3>
-        <form id="form" method="post" action="/addname">
-            <input class="input_field" type="text" name="firstName" placeholder="Enter first name" required>
-            <input class="input_field" type="number" name="age" placeholder="Enter age" required>
+        <form id="form" method="POST" action="/new">
+            <input id="name" class="input_field" type="text" name="name" placeholder="Enter first name" required>
+            <input id="age" class="input_field" type="number" name="age" placeholder="Enter age" required>
             <input class="btn" type="submit" value="Add user">
         </form>
     </div>

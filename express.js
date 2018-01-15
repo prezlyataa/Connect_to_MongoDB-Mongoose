@@ -1,11 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const User = require('./models/user');
+const User = require('./models/user');
+const bodyParser = require('body-parser');
+const url = 'mongodb://localhost/test';
 
 const app = express();
-app.use(express.static(__dirname + '/Public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(url);
 
 const db = mongoose.connection;
 
@@ -18,9 +21,23 @@ db.once('open', function () {
 });
 
 // var student = new User({
-//     name : 'Arnold',
+//     name : 'Yurii',
 //     age : 21
 // });
+
+app.post('/new', function (req,res) {
+    new User({
+        name: req.body.name,
+        age: req.body.age
+    }).save(function (err,doc) {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.send('Successfully inserted!');
+        }
+    });
+});
 
 // student.save(function (err, data) {
 //     if (err) console.log(err);
@@ -32,9 +49,7 @@ db.once('open', function () {
 //     console.log(persons);
 // });
 
-app.get('/',function(req,res){
-    res.sendFile('index.html');
-});
+app.use(express.static(__dirname + '/Public'));
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000');
